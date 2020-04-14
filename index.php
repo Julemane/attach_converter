@@ -1,32 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Upload de fichiers</title>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                  <form method="post" action="cible_envoi.php" enctype="multipart/form-data">
+<?php
 
+$request = $_SERVER['REQUEST_URI'];
+echo(__DIR__ . '/controller/upload.php');
+switch ($request) {
+    case '/' :
+        require __DIR__ . '/mainView.php';
+        break;
+    case '' :
+        require __DIR__ . '/mainView.php';
+        break;
+    case 'upload' :
+        require __DIR__ . '/upload.php';
+        break;
+    default:
+        http_response_code(404);
+        require __DIR__ . '/mainView.php';
+        break;
+}
 
-
-
-                      <div class="form-group files">
-                        <label>Upload Your File </label>
-                        <input type="file" class="form-control" name="monfichier" multiple="">
-                      </div>
-
-
-                  </form>
-                </div>
-            </div>
-        </div>
-     </body>
-
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</html>
