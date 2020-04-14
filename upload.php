@@ -1,12 +1,16 @@
 <?php
+
 $authExtension = array('jpg', 'jpeg', 'gif', 'png');
 $maxFileSize = 1000000;
 $fileToUpload = $_FILES['monfichier'];
 $fileSize = $_FILES['monfichier']['size'];
 $fileError = $_FILES['monfichier']['error'];
 $fileName = $_FILES['monfichier']['name'];
-$tempLocation = 'uploads/';
+$fileSavingLocation = 'uploads/';
 $tempLocation = $_FILES['monfichier']['tmp_name'];
+$fileExtension = pathinfo($fileName)['extension'];
+$fileLocation = $_SERVER['HTTP_HOST'].'/'.$fileSavingLocation.$fileName;
+
 
 
 if (isset($fileToUpload) AND $fileError == 0){
@@ -17,7 +21,7 @@ if (isset($fileToUpload) AND $fileError == 0){
         $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
             if (in_array($extension_upload, $authExtension))
                 {
-                move_uploaded_file($tempLocation, $tempLocation . basename($fileName));
+                move_uploaded_file($tempLocation, $fileSavingLocation . basename($fileName));
                 $result = "L'envoi a bien été effectué !";
                 }
         }
@@ -27,7 +31,7 @@ if (isset($fileToUpload) AND $fileError == 0){
           $result = 'Fichier trop volumineux';
       }
     }
-  //Si erreur on affiche l'erreur correspondante au code
+  //cas d'erreurs
   elseif($fileError != 0)
   {
      $codeErreur = $fileError;
@@ -61,7 +65,7 @@ if (isset($fileToUpload) AND $fileError == 0){
              break;
         }
   }
-echo($result);
 
+require('downloadView.php');
 
 
