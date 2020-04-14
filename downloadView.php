@@ -2,8 +2,7 @@
 
 <?php ob_start();
 
-  echo($fileName." ".$result);
-  echo("<img src=".$fileLocation."/>");
+  echo($fileName." ".$result.$fileURL);
 
 
 ?>

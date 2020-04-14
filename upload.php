@@ -9,7 +9,7 @@ $fileName = $_FILES['monfichier']['name'];
 $fileSavingLocation = 'uploads/';
 $tempLocation = $_FILES['monfichier']['tmp_name'];
 $fileExtension = pathinfo($fileName)['extension'];
-$fileLocation = $_SERVER['HTTP_HOST'].'/'.$fileSavingLocation.$fileName;
+$fileURL = $fileSavingLocation.$fileName;
 
 
 
