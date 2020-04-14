@@ -17,12 +17,6 @@
             </div>
             <input type="submit" value="Envoyer le fichier" />
           </form>
-            <?php
-            var_dump($result);
-            if(isset($result)){
-              echo($result);
-            }
-            ?>
         </div>
       </div>
     </div>

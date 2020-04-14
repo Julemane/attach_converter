@@ -1,45 +1,36 @@
 <?php
-  // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
+$authExtension = array('jpg', 'jpeg', 'gif', 'png');
+$maxFileSize = 1000000;
+$fileToUpload = $_FILES['monfichier'];
+$fileSize = $_FILES['monfichier']['size'];
+$fileError = $_FILES['monfichier']['error'];
+$fileName = $_FILES['monfichier']['name'];
+$tempLocation = 'uploads/';
+$tempLocation = $_FILES['monfichier']['tmp_name'];
 
-  if (isset($_FILES['monfichier']) AND $_FILES['monfichier']['error'] == 0)
+
+if (isset($fileToUpload) AND $fileError == 0){
+    if ($fileSize <= $maxFileSize){
+
+        $infosfichier = pathinfo($fileName);
+        $extension_upload = $infosfichier['extension'];
+        $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
+            if (in_array($extension_upload, $authExtension))
+                {
+                move_uploaded_file($tempLocation, $tempLocation . basename($fileName));
+                $result = "L'envoi a bien été effectué !";
+                }
+        }
+       //Si le fichier dépasse la taille spécifié
+      else
       {
-      // Testons si le fichier n'est pas trop gros
-
-          if ($_FILES['monfichier']['size'] <= 1000000)
-
-          {
-          // Testons si l'extension est autorisée
-
-          $infosfichier = pathinfo($_FILES['monfichier']['name']);
-
-          $extension_upload = $infosfichier['extension'];
-
-          $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
-
-              if (in_array($extension_upload, $extensions_autorisees))
-                  {
-
-                  // On peut valider le fichier et le stocker définitivement
-
-                  move_uploaded_file($_FILES['monfichier']['tmp_name'], 'uploads/' . basename($_FILES['monfichier']['name']));
-
-                  $result = "L'envoi a bien été effectué !";
-                  }
-
-
-          }
-           //Si le fichier dépasse la taille spécifié
-          else
-          {
-              $result = 'Fichier trop volumineux';
-          }
-
-
+          $result = 'Fichier trop volumineux';
       }
+    }
   //Si erreur on affiche l'erreur correspondante au code
-  elseif($_FILES['monfichier']['error'] != 0)
+  elseif($fileError != 0)
   {
-     $codeErreur = $_FILES['monfichier']['error'];
+     $codeErreur = $fileError;
      switch ($codeErreur) {
          case '1':
             $result = ' La taille du fichier téléchargé excède la valeur de upload_max_filesize, configurée dans le php.ini';
@@ -68,8 +59,9 @@
           case '8':
             $result = 'Une extension PHP a arrêté l\'envoi de fichier';
              break;
-     }
+        }
   }
-
 echo($result);
+
+
 
