@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Convertisseur de fichier</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="vendor/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>

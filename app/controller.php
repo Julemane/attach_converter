@@ -2,7 +2,6 @@
 
 function uploadFile($fileName, $fileSize, $fileError, $tempLocation, $fileExtension){
 
-
 $authExtension = array('jpg', 'jpeg', 'gif', 'png');
 $maxFileSize = 1000000;
 $fileSavingLocation = 'uploads/';
@@ -19,7 +18,7 @@ if ($fileError == 0){
             if (in_array($extension_upload, $authExtension))
                 {
                 move_uploaded_file($tempLocation, $fileSavingLocation . basename($fileName));
-                $status = "L'envoi a bien été effectué !";
+                $status = "Chargement du fichier ".$fileName. " effectué";
                 }
         }
        //Si le fichier dépasse la taille spécifié
@@ -31,8 +30,7 @@ if ($fileError == 0){
   //cas d'erreurs
   elseif($fileError != 0)
   {
-     $codeErreur = $fileError;
-     switch ($codeErreur) {
+     switch ($fileError) {
          case '1':
             $status = ' La taille du fichier téléchargé excède la valeur de upload_max_filesize, configurée dans le php.ini';
              break;
@@ -63,9 +61,22 @@ if ($fileError == 0){
         }
   }
 //insert into an array the var to return
-$result = ["Url" => $fileURL,"status" => $status];
+$result = ["Url" => $fileURL,"status" => $status, "code" => $fileError, "name"=> $fileName];
 return $result;
 }
+
+
+function convertFile($fileLocation){
+
+$ilovepdf = new Ilovepdf('project_public_id','project_secret_key');
+$myTask = $ilovepdf->newTask('compress');
+$file1 = $myTask->addFile('file1.pdf');
+$myTask->execute();
+$myTask->download();
+
+}
+
+
 
 
 

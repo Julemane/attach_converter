@@ -1,5 +1,6 @@
 <?php
 require_once('../app/controller.php');
+require_once('../app/ilovepdf/init.php');
 
 //if there is an action to do we retrieve it else we redirect uploadView
 if(isset($_GET['action'])){
@@ -25,6 +26,10 @@ switch($action){
             };
         require('views/uploadView.php');
         break;
+
+    case 'convert':
+        $fileLocation = "localhost:8081/converter/public/uploads/halflife2wallpaper.jpg";
+        convertfile($fileLocation);
 
     default:
         http_response_code(404);
