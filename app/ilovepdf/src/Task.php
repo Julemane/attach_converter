@@ -187,6 +187,7 @@ class Task extends Ilovepdf
         $data = array('task' => $task, 'v'=> self::VERSION);
         $files = array('file' => $filepath);
         $body = Body::multipart($data, $files);
+        var_dump($body);
 
         $response = $this->sendRequest('post', 'upload', $body);
         return new File($response->body->server_filename, basename($filepath));

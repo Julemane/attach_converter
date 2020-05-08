@@ -1,8 +1,8 @@
 <?php
 
-function uploadFile($fileName, $fileSize, $fileError, $tempLocation, $fileExtension){
+function fileUpload($fileName, $fileSize, $fileError, $tempLocation, $fileExtension){
 
-$authExtension = array('jpg', 'jpeg', 'gif', 'png');
+$authExtension = array('pdf');
 $maxFileSize = 1000000;
 $fileSavingLocation = 'uploads/';
 //TO DO find how to set the app name dynamic unless converter bellow
@@ -14,7 +14,6 @@ if ($fileError == 0){
 
         $infosfichier = pathinfo($fileName);
         $extension_upload = $infosfichier['extension'];
-        $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
             if (in_array($extension_upload, $authExtension))
                 {
                 move_uploaded_file($tempLocation, $fileSavingLocation . basename($fileName));
@@ -66,13 +65,20 @@ return $result;
 }
 
 
-function convertFile($fileLocation){
+function convertFile($fileUrl){
+  $ilovepdf = new Ilovepdf\Ilovepdf('project_public_d51204a4bf4e8db7965f27b1b20e24e2_2gDGw8785f071bcfb98d3af4ae440662c5bc3','secret_key_12a577086e98fb43a930d1c92588bb81_1VAvTe547f3c81ca5b7cbc8068d3679792684');
+  $ilovepdf->verifySsl(false);
+  $task = $ilovepdf->newTask('compress');
+  //to do : dynamic temp folder
+  //works with URL, not with relative path and uploadFile($task, $filepath)
 
-$ilovepdf = new Ilovepdf('project_public_id','project_secret_key');
-$myTask = $ilovepdf->newTask('compress');
-$file1 = $myTask->addFile('file1.pdf');
-$myTask->execute();
-$myTask->download();
+  //$file1 = $myTask->addFileFromUrl('http://www.jeremy-hennebique.com/telechargement/cv_2018.pdf');
+  $task->execute();
+  //lunch download auto after convertion
+  $task->toBrowser();
+  //stock the file into a folder for download later
+  $task->download('../public/download');
+
 
 }
 

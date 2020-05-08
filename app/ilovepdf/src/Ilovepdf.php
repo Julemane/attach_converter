@@ -181,7 +181,7 @@ class Ilovepdf
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . $this->getJWT()
         ), $body);
-
+        //var_dump($response);
         if ($response->code != '200' && $response->code != '201') {
             if ($response->code == 401) {
                 throw new AuthException($response->body->name, $response->code, null, $response);
@@ -209,6 +209,7 @@ class Ilovepdf
             }
         }
         return $response;
+
     }
 
     /**

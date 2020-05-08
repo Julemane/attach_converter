@@ -17,7 +17,7 @@ switch($action){
     case 'upload':
         if(isset($_FILES['monfichier'])){
             //$result is an array who contain info about the file uploaded
-             $result = uploadFile($_FILES['monfichier']['name'],
+             $result = fileUpload($_FILES['monfichier']['name'],
                          $_FILES['monfichier']['size'],
                          $_FILES['monfichier']['error'],
                          $_FILES['monfichier']['tmp_name'],
@@ -28,8 +28,8 @@ switch($action){
         break;
 
     case 'convert':
-        $fileLocation = "localhost:8081/converter/public/uploads/halflife2wallpaper.jpg";
-        convertfile($fileLocation);
+        $fileUrl = "localhost:8081/converter/public/uploads/"."test.pdf";
+        convertfile($fileUrl);
 
     default:
         http_response_code(404);

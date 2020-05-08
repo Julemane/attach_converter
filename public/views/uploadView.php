@@ -14,6 +14,7 @@
           //to do formulaire ou bouton declenchant la fonction de convertion du fichier vers l'api (utilisation des data du tableau $result)
           //masquage en js des action non realisable à se stade
           //gestion des niveaux de compression : low-med-high
+          //ajout d'un fichier de conf pour gérer dynamiquement le dossier d'upload
         }
 
       };
