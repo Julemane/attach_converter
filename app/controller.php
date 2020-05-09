@@ -66,18 +66,24 @@ return $result;
 
 
 function convertFile($fileUrl){
+
   $ilovepdf = new Ilovepdf\Ilovepdf('project_public_d51204a4bf4e8db7965f27b1b20e24e2_2gDGw8785f071bcfb98d3af4ae440662c5bc3','secret_key_12a577086e98fb43a930d1c92588bb81_1VAvTe547f3c81ca5b7cbc8068d3679792684');
   $ilovepdf->verifySsl(false);
-  $task = $ilovepdf->newTask('compress');
-  //to do : dynamic temp folder
-  //works with URL, not with relative path and uploadFile($task, $filepath)
 
-  //$file1 = $myTask->addFileFromUrl('http://www.jeremy-hennebique.com/telechargement/cv_2018.pdf');
+  $task = $ilovepdf->newTask('compress');
+
+  //Compression values values: ["extreme"|"recommended"|"low"]
+  $task->setCompressionLevel("recommended");
+
+  //To use relative path use this function : uploadFile($task, $filepath)
+  //Here we use the file URL
+  //$file = $task->addFileFromUrl('http://www.jeremy-hennebique.com/telechargement/cv_2018.pdf');
   $task->execute();
   //lunch download auto after convertion
   $task->toBrowser();
+
   //stock the file into a folder for download later
-  $task->download('../public/download');
+  //$task->download('../public/download');
 
 
 }

@@ -1,38 +1,55 @@
-+ function($) {
-    'use strict';
+function readFile(input) {
+  if (input.files && input.files[0]) {
 
-    // UPLOAD CLASS DEFINITION
-    // ======================
+    var reader = new FileReader();
 
-    var dropZone = document.getElementById('drop-zone');
-    var uploadForm = document.getElementById('js-upload-form');
+    reader.onload = function(e) {
+      var htmlPreview =
+        '<canvas id="pdfViewer"></canvas>';
+      pdfPreview(input.files[0]);
+      var wrapperZone = $(input).parent();
+      var previewZone = $(input).parent().parent().find('.preview-zone');
+      var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
 
-    var startUpload = function(files) {
-        console.log(files)
-    }
+      wrapperZone.removeClass('dragover');
+      previewZone.removeClass('hidden');
+      boxZone.empty();
+      boxZone.append(htmlPreview);
+      ;
+    };
 
-    uploadForm.addEventListener('submit', function(e) {
-        var uploadFiles = document.getElementById('js-upload-files').files;
-        e.preventDefault()
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 
-        startUpload(uploadFiles)
-    })
+function reset(e) {
+  e.wrap('<form>').closest('form').get(0).reset();
+  e.unwrap();
+}
 
-    dropZone.ondrop = function(e) {
-        e.preventDefault();
-        this.className = 'upload-drop-zone';
+$(".dropzone").change(function() {
+  readFile(this);
+});
 
-        startUpload(e.dataTransfer.files)
-    }
+$('.dropzone-wrapper').on('dragover', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $(this).addClass('dragover');
+});
 
-    dropZone.ondragover = function() {
-        this.className = 'upload-drop-zone drop';
-        return false;
-    }
+$('.dropzone-wrapper').on('dragleave', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $(this).removeClass('dragover');
+});
 
-    dropZone.ondragleave = function() {
-        this.className = 'upload-drop-zone';
-        return false;
-    }
+$('.remove-preview').on('click', function() {
+  var boxZone = $(this).parents('.preview-zone').find('.box-body');
+  var previewZone = $(this).parents('.preview-zone');
+  var dropzone = $(this).parents('.form-group').find('.dropzone');
+  boxZone.empty();
+  previewZone.addClass('hidden');
+  reset(dropzone);
+});
 
-}(jQuery);
+

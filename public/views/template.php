@@ -3,22 +3,22 @@
     <head>
         <meta charset="utf-8" />
         <title>Convertisseur de fichier</title>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link href="vendor/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
         <link href="css/style.css" rel="stylesheet">
+        <link href="vendor/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
     </head>
     <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
+    <section id="upload">
         <!--Contenu dynamique php-->
         <?= $content ?>
-        </div>
-      </div>
-    </div>
+    </section>
+
     </body>
 
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src="script/pdf.js"></script>
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
   <script src="script/script.js"></script>
+
 </html>
