@@ -5,21 +5,25 @@ function fileUpload($fileName, $fileSize, $fileError, $tempLocation, $fileExtens
 $authExtension = array('pdf');
 $maxFileSize = 1000000;
 $fileSavingLocation = 'uploads/';
+//generate an unique fileName
+$randomId = uniqid();
+$renamedFile = $randomId."_".$fileName;
 //TO DO find how to set the app name dynamic unless converter bellow
-$fileURL = $_SERVER['HTTP_HOST']."/converter/public/uploads/".$fileName;
+$fileURL = $_SERVER['HTTP_HOST']."/converter/public/uploads/".$renamedFile;
 
-var_dump($fileURL);
 if ($fileError == 0){
     if ($fileSize <= $maxFileSize){
 
         $infosfichier = pathinfo($fileName);
         $extension_upload = $infosfichier['extension'];
-            if (in_array($extension_upload, $authExtension))
-                {
-                move_uploaded_file($tempLocation, $fileSavingLocation . basename($fileName));
-                $status = "Chargement du fichier ".$fileName. " effectué";
+            if (in_array($extension_upload, $authExtension)){
+                if(!file_exists($fileSavingLocation.$renamedFile)){
+                  move_uploaded_file($tempLocation, $fileSavingLocation . basename($renamedFile));
+                  $status = "Chargement du fichier ".$fileName. " effectué";
+                  }
                 }
-        }
+            }
+
        //Si le fichier dépasse la taille spécifié
       else
       {
@@ -59,21 +63,23 @@ if ($fileError == 0){
              break;
         }
   }
+//convert size in ko
+$fileSize = explode(".",$fileSize/1000);
 //insert into an array the var to return
-$result = ["Url" => $fileURL,"status" => $status, "code" => $fileError, "name"=> $fileName];
+$result = ["Url" => $fileURL,"status" => $status, "code" => $fileError, "name"=> $fileName,"renamedfile"=>$renamedFile , "size"=>$fileSize[0]];
 return $result;
 }
 
 
-function convertFile($fileUrl){
+function convertFile($fileUrl,$compressionLevel){
 
+  var_dump($compressionLevel);
+  //add config file to handle key
   $ilovepdf = new Ilovepdf\Ilovepdf('project_public_d51204a4bf4e8db7965f27b1b20e24e2_2gDGw8785f071bcfb98d3af4ae440662c5bc3','secret_key_12a577086e98fb43a930d1c92588bb81_1VAvTe547f3c81ca5b7cbc8068d3679792684');
   $ilovepdf->verifySsl(false);
-
   $task = $ilovepdf->newTask('compress');
-
   //Compression values values: ["extreme"|"recommended"|"low"]
-  $task->setCompressionLevel("recommended");
+  $task->setCompressionLevel($compressionLevel);
 
   //To use relative path use this function : uploadFile($task, $filepath)
   //Here we use the file URL
@@ -87,6 +93,9 @@ function convertFile($fileUrl){
 
 
 }
+
+
+
 
 
 

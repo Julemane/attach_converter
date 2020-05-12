@@ -24,7 +24,7 @@
                 <i class="glyphicon glyphicon-download-alt"></i>
                 <p>Choose an image file or drag it here.</p>
               </div>
-              <input type="file" name="monfichier" class="dropzone" >
+              <input type="file" name="monfichier" class="dropzone" accept = ".pdf">>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="col-md-12">
           <?php
           if(isset($result)){
-            echo('<span class="oi oi-file" title="icon name" aria-hidden="true"></span>'.$result["status"]);
+            echo('<span class="oi oi-file" title="icon name" aria-hidden="true"></span>'.$result["status"].". Taille ".$result["size"]." ko");
             if($result["code"] == 0){
               ?>
 
@@ -52,19 +52,19 @@
                   <legend class="col-form-label col-sm-6 pt-0">Selectionnez le niveau de compression</legend>
                   <div class="col-sm-6">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                      <input class="form-check-input" type="radio" name="compressionLevel" id="gridRadios1" value="recommended" checked>
                       <label class="form-check-label" for="gridRadios1">
                         Standard
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                      <input class="form-check-input" type="radio" name="compressionLevel" id="gridRadios2" value="low">
                       <label class="form-check-label" for="gridRadios2">
                         Faible
                       </label>
                     </div>
                     <div class="form-check disabled">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+                      <input class="form-check-input" type="radio" name="compressionLevel" id="gridRadios3" value="extreme">
                       <label class="form-check-label" for="gridRadios3">
                         Maximum
                       </label>

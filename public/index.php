@@ -28,8 +28,18 @@ switch($action){
         break;
 
     case 'convert':
+    //add config file to handle dynamic path of upload folder
         $fileUrl = "localhost:8081/converter/public/uploads/"."test.pdf";
-        convertfile($fileUrl);
+        if(isset($_POST["compressionLevel"]) AND
+            $_POST["compressionLevel"] == "recommended" OR
+            $_POST["compressionLevel"] == "low" OR
+            $_POST["compressionLevel"] == "extreme"){
+
+                $compressionLevel = $_POST["compressionLevel"];
+                convertfile($fileUrl, $compressionLevel);
+            }
+            break;
+
 
     default:
         http_response_code(404);
