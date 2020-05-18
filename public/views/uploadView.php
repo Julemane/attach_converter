@@ -69,6 +69,11 @@
                         Maximum
                       </label>
                     </div>
+                    <?php
+                    if(!is_null($result["renamedfile"])){
+                      echo("<input type='hidden' value=".$result["renamedfile"]." name='fileName'>");
+
+                    }?>
                   </div>
                 </div>
               </fieldset>
