@@ -2,6 +2,9 @@
 require_once('../app/controller.php');
 require_once('../app/ilovepdf/init.php');
 
+//add config file to handle dynamic path of upload folder
+$domainName = "http://www.pdf-converter.jeremy-hennebique.com";
+
 //if there is an action to do we retrieve it else we redirect uploadView
 if(isset($_GET['action'])){
     $action = $_GET['action'];
@@ -29,15 +32,16 @@ switch($action){
 
     case 'convert':
         if(isset($_POST['fileName'])){
-        //add config file to handle dynamic path of upload folder
-        $fileUrl = "localhost:8081/converter/public/uploads/".strval($_POST['fileName']);
+        $fileName = strval($_POST['fileName']);
+        $fileUrl = $domainName."/public/uploads/".$fileName;
             if(isset($_POST["compressionLevel"]) AND
                 $_POST["compressionLevel"] == "recommended" OR
                 $_POST["compressionLevel"] == "low" OR
                 $_POST["compressionLevel"] == "extreme"){
 
                     $compressionLevel = $_POST["compressionLevel"];
-                    convertfile($fileUrl, $compressionLevel);
+                    convertfile($fileUrl, $compressionLevel, $fileName);
+
                 }
         }
 
