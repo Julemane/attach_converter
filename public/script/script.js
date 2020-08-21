@@ -15,12 +15,14 @@ function readFile(input) {
       previewZone.removeClass('hidden');
       boxZone.empty();
       boxZone.append(htmlPreview);
+      $("#submit").removeAttr("disabled");
       ;
     };
 
     reader.readAsDataURL(input.files[0]);
   }
 }
+
 
 function reset(e) {
   e.wrap('<form>').closest('form').get(0).reset();
@@ -44,12 +46,14 @@ $('.dropzone-wrapper').on('dragleave', function(e) {
 });
 
 $('.remove-preview').on('click', function() {
+  $("#submit").attr("disabled", true);
   var boxZone = $(this).parents('.preview-zone').find('.box-body');
   var previewZone = $(this).parents('.preview-zone');
   var dropzone = $(this).parents('.form-group').find('.dropzone');
   boxZone.empty();
   previewZone.addClass('hidden');
   reset(dropzone);
+
 });
 
 
