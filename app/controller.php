@@ -90,8 +90,6 @@ function convertFile($fileUrl,$compressionLevel, $fileName){
   //delete file on IlovePdf server
   $task->delete();
 
-
-
   //stock the file into a folder for download later
   //$task->download('../public/download');
 

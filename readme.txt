@@ -1,6 +1,6 @@
 To do :
 
-
+rediriger vers l'accueil après téléchargement du fichier compressé
 modifier le nom du fichier de sortie avec setOutputFilename($filename)
 ajouter un fichier de conf pour gérer dynamiquement le dossier d'upload
 encryption des fichiers lors de l'upload et lors de la convertion
