@@ -45,7 +45,13 @@ switch($action){
                 }
         }
 
-            break;
+        break;
+
+    case 'delete':
+        deleteFileFromServer(($_GET['fileName']));
+        header('location:?action=1');
+
+        break;
 
 
     default:

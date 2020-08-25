@@ -82,17 +82,16 @@
                 </div>
               </fieldset>
             <input type="submit" class="btn btn-success" value="Lancer la compression" />
+            <a class="btn btn-danger" href="?action=delete&fileName=<?php echo($result["renamedfile"])?>" role="button">Annuler</a>
           </form>
         </div>
       </div>
     </div>
-          <?php
-
+      <?php
         }
-
       };
-      ?>
-    </div>
+    ?>
+
 
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

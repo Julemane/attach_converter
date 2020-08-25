@@ -84,15 +84,19 @@ function convertFile($fileUrl,$compressionLevel, $fileName){
   $file = $task->addFileFromUrl($fileUrl);
   $task->execute();
   //delete file from local upload folder
-  unlink("../public/uploads/".$fileName);
+  deleteFileFromServer($fileName);
   //lunch download auto after convertion
   $task->toBrowser();
   //delete file on IlovePdf server
   $task->delete();
-
   //stock the file into a folder for download later
   //$task->download('../public/download');
 
+}
+
+function deleteFileFromServer($fileName){
+
+unlink("../public/uploads/".$fileName);
 
 }
 
