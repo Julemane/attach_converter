@@ -4,6 +4,16 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>PDF-Converter</title>
+        <meta name="description" content="PDF-Converter est une application qui vous permet de compresser gratuitement et simplement vos fichiers PDF volumineux." />
+        <meta name="robots" content="all" />
+        <meta name="language" content="fr" />
+          <!-- Meta facebook-->
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="www.jeremy-hennebique.com/img/pdf-converter_min.png"/>
+        <meta property="og:title" content="PDF-Converter"/>
+        <meta property="og:url" content="www.pdf-converter.jeremy-hennebique.com/"/>
+        <meta property="og:description" content="PDF-Converter est une application qui vous permet de compresser gratuitement et simplement vos fichiers PDF volumineux."/>
+
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
         <link href="public/css/style.css" rel="stylesheet">
         <link href="vendor/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">

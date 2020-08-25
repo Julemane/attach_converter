@@ -1,9 +1,12 @@
 <?php
 
+define('KB', 1024);
+define('MB', 1048576);
+
 function fileUpload($fileName, $fileSize, $fileError, $tempLocation, $fileExtension){
 
 $authExtension = array('pdf');
-$maxFileSize = 1000000;
+$maxFileSize = 10*MB;
 $fileSavingLocation = 'uploads/';
 //generate an unique fileName
 $randomId = uniqid();
@@ -13,7 +16,6 @@ $fileURL = $_SERVER['HTTP_HOST']."/converter/public/uploads/".$renamedFile;
 
 if ($fileError == 0){
     if ($fileSize <= $maxFileSize){
-
         $infosfichier = pathinfo($fileName);
         $extension_upload = $infosfichier['extension'];
             if (in_array($extension_upload, $authExtension)){
@@ -24,13 +26,15 @@ if ($fileError == 0){
                 }
             }
 
-       //Si le fichier dépasse la taille spécifié
+       //if file is over specified max size
       else
       {
           $status = 'Fichier trop volumineux';
+          //convertion form is displayed only if $result["code"] == 0 this undisplay the convertion form
+          $fileError = 1;
       }
     }
-  //cas d'erreurs
+  //error cases
   elseif($fileError != 0)
   {
      switch ($fileError) {

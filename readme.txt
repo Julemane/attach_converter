@@ -1,6 +1,5 @@
 To do :
 
-regler le responsive sur mobile
 rediriger vers l'accueil après téléchargement du fichier compressé
 Gestion des cas ou on upload autre chose qu'un pdf => pre-control JS sur l'extension et la taille du fichier
 ne pas afficher la section upload lorsque la section de selection du niveau de compression est affiché
@@ -12,6 +11,8 @@ encryption des fichiers lors de l'upload et lors de la convertion
 
 Done :
 
+Fix affichage message fichier trop volumineux pour fichier de plus de 1MO =>OK
+regler le responsive sur mobile => OK
 supression des fichiers du serveur ilovepdf avec task deleteFile()=>OK
 supression des fichiers uploadé du serveur => OK
 Désactiver le bouton de chargement de fichier si pas de fichier => OK
