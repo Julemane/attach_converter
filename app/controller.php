@@ -5,7 +5,7 @@ define('MB', 1048576);
 
 function fileUpload($fileName, $fileSize, $fileError, $tempLocation, $fileExtension){
 
-$authExtension = array('pdf');
+$authExtension = array('pdf','PDF');
 $maxFileSize = 10*MB;
 $fileSavingLocation = 'uploads/';
 //generate an unique fileName
@@ -30,7 +30,7 @@ if ($fileError == 0){
       else
       {
           $status = 'Fichier trop volumineux';
-          //convertion form is displayed only if $result["code"] == 0 this undisplay the convertion form
+          //convertion form is displayed only if $result["code"] == 0 this code undisplay the convertion form
           $fileError = 1;
       }
     }

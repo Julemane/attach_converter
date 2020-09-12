@@ -44,7 +44,7 @@
             <p>
               <?php
             if(isset($result)){
-              echo('<span class="oi oi-file" title="icon name" aria-hidden="true"></span>'.$result["status"].". Taille ".$result["size"]." ko");
+              echo('<span class="oi oi-file" title="icon name" aria-hidden="true"></span>'.$result["status"].". Taille avant compression : ".$result["size"]." ko");
               if($result["code"] == 0){
                 ?>
               </p>
