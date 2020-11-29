@@ -8,9 +8,10 @@ function fileUpload($fileName, $fileSize, $fileError, $tempLocation, $fileExtens
 $authExtension = array('pdf','PDF');
 $maxFileSize = 10*MB;
 $fileSavingLocation = 'uploads/';
-//generate an unique fileName
+//generate an unique fileName and replace space by "_" in original filename
 $randomId = uniqid();
-$renamedFile = $randomId."_".$fileName;
+$renamedFile = $randomId."_".str_replace(' ', '_', $fileName);
+
 //TO DO find how to set the app name dynamic unless converter bellow
 $fileURL = $_SERVER['HTTP_HOST']."/converter/public/uploads/".$renamedFile;
 
@@ -70,6 +71,7 @@ if ($fileError == 0){
 //convert size in ko
 $fileSize = explode(".",$fileSize/1000);
 //insert into an array the var to return
+
 $result = ["Url" => $fileURL,"status" => $status, "code" => $fileError, "name"=> $fileName,"renamedfile"=>$renamedFile , "size"=>$fileSize[0]];
 return $result;
 }
@@ -83,6 +85,7 @@ function convertFile($fileUrl,$compressionLevel, $fileName){
   //Compression values values: ["extreme"|"recommended"|"low"]
   $task->setCompressionLevel($compressionLevel);
   //To use relative path use this function : uploadFile($task, $filepath)
+  echo($fileUrl);
   //Here we use the file URL
 
   $file = $task->addFileFromUrl($fileUrl);

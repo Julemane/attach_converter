@@ -33,6 +33,7 @@ switch($action){
     case 'convert':
         if(isset($_POST['fileName'])){
         $fileName = strval($_POST['fileName']);
+        var_dump($fileName);
         $fileUrl = $domainName."/public/uploads/".$fileName;
             if(isset($_POST["compressionLevel"]) AND
                 $_POST["compressionLevel"] == "recommended" OR
