@@ -31,7 +31,9 @@
 
       <div class="row">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary btn-block" id="submit" disabled>Envoyer le fichier</button>
+          <button type="submit" class="btn btn-primary btn-block" id="submit" disabled>Envoyer le fichier
+            <span id="loader" class="fa fa-spinner fa-spin"> </span>
+          </button>
         </div>
       </div>
     </div>

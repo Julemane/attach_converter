@@ -6,6 +6,7 @@ ne pas afficher la section upload lorsque la section de selection du niveau de c
 modifier le nom du fichier de sortie avec setOutputFilename($filename)
 ajouter un fichier de conf pour gérer dynamiquement le dossier d'upload
 encryption des fichiers lors de l'upload et lors de la convertion
+ajout d'un visuel waiting lors de l'upload et lors de la convertion
 
 
 

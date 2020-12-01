@@ -56,4 +56,13 @@ $('.remove-preview').on('click', function() {
 
 });
 
+$(function() {
+
+      $("#submit").click( function()
+           {
+            $("#loader").css('display', 'inline-block');
+           }
+      );
+});
+
 

@@ -15,8 +15,10 @@
         <meta property="og:description" content="PDF-Converter est une application qui vous permet de compresser gratuitement et simplement vos fichiers PDF volumineux."/>
 
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-        <link href="public/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="vendor/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+        <link href="public/css/style.css" rel="stylesheet">
+
     </head>
     <body>
     <header id=""class="container">
